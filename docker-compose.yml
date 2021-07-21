@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: db-algafoods
+    image: mysql/mysql-server:8.0.23
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: algafood
+      MYSQL_ROOT_HOST: "%"
+    command: --lower_case_table_names=1
