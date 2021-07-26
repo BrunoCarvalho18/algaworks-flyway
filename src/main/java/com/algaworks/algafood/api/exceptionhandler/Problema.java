@@ -2,7 +2,6 @@ package com.algaworks.algafood.api.exceptionhandler;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Builder;
@@ -19,11 +18,11 @@ public class Problema {
 	private String title;
 	private String detail;
 	private String userMessage;
-	private List<Field> fields;
+	private List<Object> objects;
 	
 	@Getter
 	@Builder
-	public static class Field{
+	public static class Object{
 		
 		private String name;
 		private String userMessage;
