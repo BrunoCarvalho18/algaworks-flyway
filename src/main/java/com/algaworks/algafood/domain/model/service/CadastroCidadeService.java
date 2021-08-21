@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.algaworks.algafood.domain.excpetion.EntidadeEmUsoException;
 import com.algaworks.algafood.domain.excpetion.EntidadeNaoEncontradaException;
 import com.algaworks.algafood.domain.model.Cidade;
@@ -27,6 +29,7 @@ public class CadastroCidadeService {
 	  private static final String MSG_CIDADE_NAO_ENCONTRADA = 
 		        "Não existe um cadastro de cidade com código %d";
 
+	@Transactional
 	public Cidade salvar(Cidade cidade) {
 		Long estadoId = cidade.getEstado().getId();
 		Estado estado = estadoRepository.findById(estadoId).orElseThrow(() 
@@ -38,6 +41,7 @@ public class CadastroCidadeService {
 		return cidadeRepository.save(cidade);
 	}
 
+	@Transactional
 	public void excluir(Long cidadeId) {
 		try {
 			cidadeRepository.deleteById(cidadeId);
@@ -52,6 +56,7 @@ public class CadastroCidadeService {
 		}
 	}
 	
+	@Transactional
 	public Cidade buscarOuFalhar(Long cidadeId) {
 	    return cidadeRepository.findById(cidadeId)
 	        .orElseThrow(() -> new EntidadeNaoEncontradaException(
